@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<title>form</title>
+<body>
+    <link rel="stylesheet"  href="/public/css/style.css">
+<img src="/public/tamagochi.jpg"/>
+<form action="/" method="POST" id="form">
+    
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" name="email"/>
+    </div>
+    <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="input" name="password"/>
+        </div>
+    <button type="submit">Submit</button>
+</form>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(()=>{
+        $('#form').submit((e)=>{
+            e.preventDefault()
+            $.ajax({
+                url : '/',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify($('#form').serializeArray()),
+                success: (response)=>{
+                    console.log("got response")
+                    console.log(response)
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>
